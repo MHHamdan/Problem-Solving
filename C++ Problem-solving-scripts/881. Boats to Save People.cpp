@@ -1,10 +1,11 @@
 class Solution {
-    public int numRescueBoats(int[] people, int limit) {
+public:
+    int numRescueBoats(vector<int>& people, int limit) {
         int boatCount = 0;
-        Arrays.sort(people);
+        sort(people.begin(), people.end());
         
         int left = 0;
-        int right = people.length - 1;
+        int right = people.size() - 1;
         
         while(left <= right){
             int sum = people[left] + people[right];
@@ -20,4 +21,4 @@ class Solution {
         }
         return boatCount;
     }
-}
+};
