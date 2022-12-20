@@ -1,30 +1,23 @@
 class Solution {
-public:
-    int numRescueBoats(vector<int>& people, int limit) {
-       
-        // sort vector
-        sort(people.begin(),people.end());
+    public int numRescueBoats(int[] people, int limit) {
+        int boatCount = 0;
+        Arrays.sort(people);
         
-        int i = 0, j = people.size() - 1,cnt = 0;
+        int left = 0;
+        int right = people.length - 1;
         
-        while(i <= j)
-        {   
-            // lightest person + heaviest person sum <= limit
-            // they can go together
-            if(people[i] + people[j] <= limit)
-            {
-                ++i;
-                --j;
+        while(left <= right){
+            int sum = people[left] + people[right];
+            if(sum <= limit){
+                boatCount++;
+                left++;
+                right--;
             }
-            // if sum is over the limit,
-            // heaviest will go alone.
-            else
-                --j;
-            
-            ++cnt;  // number of boats
+            else{
+                boatCount++;
+                right--;
+            }
         }
-        
-        return cnt;
-        
+        return boatCount;
     }
- };
+}
